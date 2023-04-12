@@ -3453,13 +3453,13 @@ ul.feature-icons li:nth-child(2) {
 	margin-top: 6rem;
 }
 
-#wrapper>section.intro {
-	align-items: center;
-}
-
 #wrapper>section.intro>header {
 	padding-top: 4rem;
 	width: 100%;
+}
+
+#wrapper>section.intro>.content {
+	padding-top: 3rem;
 }
 
 #wrapper>section.intro>header>* {
@@ -3471,7 +3471,6 @@ ul.feature-icons li:nth-child(2) {
 }
 
 #wrapper>section.intro>.content {
-	height: 100vh;
 	max-width: none;
 }
 
