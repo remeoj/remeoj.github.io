@@ -1,148 +1,33 @@
-HTML
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Good Morning!</title>
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-			font-family: sans-serif;
-			background-color: #f4f4f4;
-		}
-
-		.container {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			width: 400px;
-			height: 300px;
-			text-align: center;
-		}
-
-		.sun {
-			width: 100px;
-			height: 100px;
-			border-radius: 50%;
-			background-color: #f7c200;
-			animation: sun-glow 2s infinite alternate;
-			position: relative;
-		}
-
-		.rays {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-		}
-
-		.ray {
-			width: 2px;
-			height: 100px;
-			background-color: #f7c200;
-			opacity: 0.3;
-			transform-origin: 0 50%;
-			animation: sun-rays 2s infinite alternate;
-		}
-
-		.ray:nth-child(1) {
-			transform: rotate(30deg);
-		}
-
-		.ray:nth-child(2) {
-			transform: rotate(60deg);
-		}
-
-		.ray:nth-child(3) {
-			transform: rotate(90deg);
-		}
-
-		.ray:nth-child(4) {
-			transform: rotate(120deg);
-		}
-
-		.ray:nth-child(5) {
-			transform: rotate(150deg);
-		}
-
-		.ray:nth-child(6) {
-			transform: rotate(180deg);
-		}
-
-		.ray:nth-child(7) {
-			transform: rotate(210deg);
-		}
-
-		.ray:nth-child(8) {
-			transform: rotate(240deg);
-		}
-
-		.ray:nth-child(9) {
-			transform: rotate(270deg);
-		}
-
-		.ray:nth-child(10) {
-			transform: rotate(300deg);
-		}
-
-		.ray:nth-child(11) {
-			transform: rotate(330deg);
-		}
-
-		.ray:nth-child(12) {
-			transform: rotate(360deg);
-		}
-
-		@keyframes sun-glow {
-			from {
-				transform: scale(1);
-			}
-
-			to {
-				transform: scale(1.1);
-			}
-		}
-
-		@keyframes sun-rays {
-			from {
-				opacity: 0.3;
-				transform: scaleX(0);
-			}
-
-			to {
-				opacity: 1;
-				transform: scaleX(1);
-			}
-		}
-
-		.text {
-			font-size: 40px;
-			color: #f7c200;
-			margin-top: 50px;
-		}
-	</style>
+	<title>Sunrise Page</title>
+	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
+	<div class="background"></div>
 	<div class="container">
 		<div class="sun">
-			<div class="rays">
-				<div class="ray"></div>
-				<div class="ray"></div>
-				<div class="ray"></div>
-				<div class="ray"></div>
-				<div class="ray"></div>
-				<div class="ray"></div>
-				<div class="ray"></div>
-				<div class="ray"></div>
-				<div class="ray"></div>
-				<div class="ray"></div>
-				<div class="ray"></div>
-				<div class="ray"></div>
-			</div>
+			<span class="ray ray1"></span>
+			<span class="ray ray2"></span>
+			<span class="ray ray3"></span>
+			<span class="ray ray4"></span>
+			<span class="ray ray5"></span>
+			<span class="ray ray6"></span>
+			<span class="ray ray7"></span>
+			<span class="ray ray8"></span>
 		</div>
-		<p class="text">Good Morning!</p>
+		<div id="message-container" class="hidden">
+			<h1 id="greeting">Good Morning</h1>
+			<div id="counter"></div> <!-- This is the counter element -->
+		</div>
+	</div>
+
+	<script src="assets/js/main.js"></script>
+</body>
+
+</html>

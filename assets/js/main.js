@@ -1,203 +1,119 @@
+// Define the greetings
+const greetings = [
+	"Good morning",
+	"Morning",
+	"Good morning y'all",
+	"Morning y'all",
+	"M",
+	"m",
+	"gm",
+	"GM",
+	".",
+	" ",
+	"nn",
+	"ᵐ",
+	"ᵍᵐ",
+	"ᴹ",
+	"ᴳᴹ",
+	"Gₘ",
+	"₉ₘ",
+	"ₘ",
+	"Top of the morning to you (Irish: Cinn an tíde dhuit)",
+	"Bright and early",
+	"Rise and shine",
+	"Greetings",
+	"Salutations",
+	"Hey there",
+	"Hello, morning",
+	"Howdy",
+	"Good day",
+	"Greetings, everyone",
+	"Hello, world",
+	"Hey, sunshine",
+	"Bonjour (French: Good morning)",
+	"Guten Morgen (German: Good morning)",
+	"Buenos días (Spanish: Good morning)",
+	"Buongiorno (Italian: Good morning)",
+	"Kaliméra (Greek: Good morning)",
+	"Ohayo (Japanese: Good morning)",
+	"Annyeonghaseyo (Korean: Good morning)",
+	"Aloha kakahiaka (Hawaiian: Good morning)",
+	"Shubh prabhat (Hindi: Good morning)",
+	"Selamat pagi (Indonesian: Good morning)",
+	"As-salamu alaykum (Arabic: Peace be upon you)",
+	"Goeie more (Afrikaans: Good morning)",
+	"God morgen (Norwegian: Good morning)",
+	"Dobro jutro (Croatian: Good morning)",
+	"Dzień dobry (Polish: Good morning)",
+	"Bore da (Welsh: Good morning)",
+	"Labas rytas (Lithuanian: Good morning)",
+	"Buna dimineata (Romanian: Good morning)",
+	"Dobré ráno (Slovak: Good morning)",
+	"Hyvää huomenta (Finnish: Good morning)",
+	"Sabah al-khair (Arabic: Good morning)",
+	"Sabahu al-khayr (Arabic: Good morning)",
+	"Zao shang hao (Mandarin Chinese: Good morning)",
+	"Namaste (Hindi: A respectful greeting)",
+	"Magandang umaga (Filipino: Good morning)",
+	"Godan daginn (Icelandic: Good morning)",
+	"Arajo (Basque: Good morning)",
+	"Góðan morgun (Icelandic: Good morning)",
+	"Gunaydin (Turkish: Good morning)",
+	"Kalimera (Greek: Good morning)",
+	"Shubhodaya (Sanskrit: Good morning)",
+	"God morgon (Swedish: Good morning)",
+	"Suprabaatham (Tamil: Good morning)",
+	"Jo napot (Hungarian: Good day)",
+	"Günaydın (Turkish: Good morning)",
+	"Kali mera (Greek: Good morning)",
+	"Sawubona (Zulu: Hello)"
+];
 
-(function ($) {
+window.onload = function () {
+	// Change background color to light blue
+	var background = document.querySelector('.background');
+	background.style.backgroundColor = '#87CEFA';
 
-	var $window = $(window),
-		$body = $('body');
+	// Wait for the sunrise animation to finish
+	var sun = document.querySelector('.sun');
+	sun.addEventListener('animationend', function () {
+		// Show the message
+		var messageContainer = document.getElementById('message-container');
+		messageContainer.classList.remove('hidden');
 
-	// Breakpoints.
-	breakpoints({
-		default: ['1681px', null],
-		xlarge: ['1281px', '1680px'],
-		large: ['981px', '1280px'],
-		medium: ['737px', '980px'],
-		small: ['481px', '736px'],
-		xsmall: ['361px', '480px'],
-		xxsmall: [null, '360px']
+		// Display "Good Morning" messages with greetings and suffixes
+		var counter = document.getElementById('counter');
+		greetings.forEach(function (greeting) {
+			for (var i = 0; i <= 20; i++) {
+				var h1 = document.createElement('h1');
+				h1.textContent = greeting + ' ' + i + getSuffix(i);
+				counter.appendChild(h1);
+			}
+		});
 	});
+};
 
-	// Play initial animations on page load.
-	$window.on('load', function () {
-		window.setTimeout(function () {
-			$body.removeClass('is-preload');
-		}, 100);
-	});
-
-	// Hack: Enable IE workarounds.
-	if (browser.name == 'ie')
-		$body.addClass('is-ie');
-
-	// Mobile?
-	if (browser.mobile)
-		$body.addClass('is-mobile');
-
-	// Scrolly.
-	$('.scrolly')
-		.scrolly({
-			offset: 100
-		});
-
-	// Polyfill: Object fit.
-	if (!browser.canUse('object-fit')) {
-
-		$('.image[data-position]').each(function () {
-
-			var $this = $(this),
-				$img = $this.children('img');
-
-			// Apply img as background.
-			$this
-				.css('background-image', 'url("' + $img.attr('src') + '")')
-				.css('background-position', $this.data('position'))
-				.css('background-size', 'cover')
-				.css('background-repeat', 'no-repeat');
-
-			// Hide img.
-			$img
-				.css('opacity', '0');
-
-		});
-
-		$('.gallery > a').each(function () {
-
-			var $this = $(this),
-				$img = $this.children('img');
-
-			// Apply img as background.
-			$this
-				.css('background-image', 'url("' + $img.attr('src') + '")')
-				.css('background-position', 'center')
-				.css('background-size', 'cover')
-				.css('background-repeat', 'no-repeat');
-
-			// Hide img.
-			$img
-				.css('opacity', '0');
-
-		});
-
+// Function to get the appropriate suffix for a number
+function getSuffix(num) {
+	var suffix = '';
+	if (num === 11 || num === 12 || num === 13) {
+		suffix = 'th';
+	} else {
+		var lastDigit = num % 10;
+		switch (lastDigit) {
+			case 1:
+				suffix = 'st';
+				break;
+			case 2:
+				suffix = 'nd';
+				break;
+			case 3:
+				suffix = 'rd';
+				break;
+			default:
+				suffix = 'th';
+				break;
+		}
 	}
-
-	// Gallery.
-	$('.gallery')
-		.on('click', 'a', function (event) {
-
-			var $a = $(this),
-				$gallery = $a.parents('.gallery'),
-				$modal = $gallery.children('.modal'),
-				$modalImg = $modal.find('img'),
-				href = $a.attr('href');
-
-			// Not an image? Bail.
-			if (!href.match(/\.(jpg|gif|png|mp4)$/))
-				return;
-
-			// Prevent default.
-			event.preventDefault();
-			event.stopPropagation();
-
-			// Locked? Bail.
-			if ($modal[0]._locked)
-				return;
-
-			// Lock.
-			$modal[0]._locked = true;
-
-			// Set src.
-			$modalImg.attr('src', href);
-
-			// Set visible.
-			$modal.addClass('visible');
-
-			// Focus.
-			$modal.focus();
-
-			// Delay.
-			setTimeout(function () {
-
-				// Unlock.
-				$modal[0]._locked = false;
-
-			}, 600);
-
-		})
-		.on('click', '.modal', function (event) {
-
-			var $modal = $(this),
-				$modalImg = $modal.find('img');
-
-			// Locked? Bail.
-			if ($modal[0]._locked)
-				return;
-
-			// Already hidden? Bail.
-			if (!$modal.hasClass('visible'))
-				return;
-
-			// Stop propagation.
-			event.stopPropagation();
-
-			// Lock.
-			$modal[0]._locked = true;
-
-			// Clear visible, loaded.
-			$modal
-				.removeClass('loaded')
-
-			// Delay.
-			setTimeout(function () {
-
-				$modal
-					.removeClass('visible')
-
-				setTimeout(function () {
-
-					// Clear src.
-					$modalImg.attr('src', '');
-
-					// Unlock.
-					$modal[0]._locked = false;
-
-					// Focus.
-					$body.focus();
-
-				}, 475);
-
-			}, 125);
-
-		})
-		.on('keypress', '.modal', function (event) {
-
-			var $modal = $(this);
-
-			// Escape? Hide modal.
-			if (event.keyCode == 27)
-				$modal.trigger('click');
-
-		})
-		.on('mouseup mousedown mousemove', '.modal', function (event) {
-
-			// Stop propagation.
-			event.stopPropagation();
-
-		})
-		.prepend('<div class="modal" tabIndex="-1"><div class="inner"><img src="" /></div></div>')
-		.find('img')
-		.on('load', function (event) {
-
-			var $modalImg = $(this),
-				$modal = $modalImg.parents('.modal');
-
-			setTimeout(function () {
-
-				// No longer visible? Bail.
-				if (!$modal.hasClass('visible'))
-					return;
-
-				// Set loaded.
-				$modal.addClass('loaded');
-
-			}, 275);
-
-		});
-
-})(jQuery);
+	return suffix;
+}
