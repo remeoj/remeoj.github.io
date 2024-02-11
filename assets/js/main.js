@@ -72,7 +72,7 @@ const greetings = [
 window.onload = function () {
 	// Change background color to light blue
 	var background = document.querySelector('.background');
-	background.style.backgroundColor = '#87CEFA';
+	background.style.backgroundColor = '#FFB6C1';
 
 	// Wait for the sunrise animation to finish
 	var sun = document.querySelector('.sun');
