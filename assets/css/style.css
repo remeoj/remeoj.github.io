@@ -1,0 +1,136 @@
+body,
+html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+.background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	transition: background-color 5s ease;
+	/* Smooth background color transition */
+}
+
+.container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.sun {
+	position: absolute;
+	bottom: -200px;
+	/* Initially outside the viewport */
+	left: 50%;
+	transform: translateX(-50%);
+	width: 200px;
+	height: 200px;
+	background-color: yellow;
+	border-radius: 50%;
+	animation: sunrise 5s forwards;
+	z-index: 1;
+	/* Ensure the sun is above other elements */
+}
+
+.ray {
+	position: absolute;
+	width: 2px;
+	height: 50px;
+	/* Adjusted length */
+	background-color: yellow;
+	top: 50%;
+	left: 50%;
+	transform-origin: top;
+}
+
+.ray1 {
+	transform: translate(-50%, -50%) rotate(45deg) translateY(calc(200px - 50px));
+	/* Adjusted position */
+}
+
+.ray2 {
+	transform: translate(-50%, -50%) rotate(90deg) translateY(calc(170px - 50px));
+	/* Adjusted position all the way left */
+}
+
+.ray3 {
+	transform: translate(-50%, -50%) rotate(135deg) translateY(calc(170px - 50px));
+	/* Adjusted position */
+}
+
+.ray4 {
+	transform: translate(-50%, -50%) rotate(180deg) translateY(calc(150px - 50px));
+	/* Adjusted position */
+}
+
+.ray5 {
+	transform: translate(-50%, -50%) rotate(225deg) translateY(calc(170px - 50px));
+	/* Adjusted position NE */
+}
+
+.ray6 {
+	transform: translate(-50%, -50%) rotate(270deg) translateY(calc(170px - 50px));
+	/* Adjusted position right*/
+}
+
+.ray7 {
+	transform: translate(-50%, -50%) rotate(315deg) translateY(calc(200px - 50px));
+	/* Adjusted position diagonal bottom right */
+}
+
+.ray8 {
+	transform: translate(-50%, -50%) rotate(360deg) translateY(calc(200px - 50px));
+	/* Adjusted position bottom */
+}
+
+#message-container {
+	position: relative;
+	top: calc(50% + 100px);
+	/* Adjusted position to be underneath the sun */
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	z-index: 2;
+	/* Ensure the message is above the sun */
+}
+
+#message-container h1 {
+	font-size: 16px;
+	color: black;
+	/* Adjust color as needed */
+}
+
+#counter {
+	position: absolute;
+
+	display: flex;
+	flex-wrap: wrap;
+	/* Allow items to wrap to the next line */
+	flex-direction: row;
+	/* Arrange items in a row */
+	justify-content: space-between;
+	/* Spread items horizontally */
+	align-items: center;
+	/* Center items vertically */
+	z-index: 2;
+
+}
+
+.hidden>h1 {
+	display: none;
+}
+
+@keyframes sunrise {
+	0% {
+		bottom: -200px;
+	}
+
+	100% {
+		bottom: 50%;
+	}
+}
